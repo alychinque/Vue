@@ -25,9 +25,17 @@
       <span v-if="showBooks">Hide Books </span>
       <span v-else>Show Books </span>
     </button>
+
+    <!-- attribute binding -->
+    <!-- <a v-bind:href="url">best website ever</a> -->
+    <div>
+      <a :href="url">best website ever</a>
+    </div>
+
     <div v-if="showBooks">
       <ul>
         <li v-for="book in books">
+          <img :src="book.img" :alt="book.title">
           <h3>{{ book.title }}</h3>
           <p>{{ book.author }}</p>
         </li>
@@ -40,4 +48,5 @@
 </body>
 </html>
 
-<!-- v-on:click === @click -->
+<!-- v-on:click= === @click= -->
+<!-- v-bind:href= === :href= -->
