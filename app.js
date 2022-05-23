@@ -20,7 +20,16 @@ const app = Vue.createApp({
     changeFav(book){
       book.isFav = !book.isFav
     }
+  },
+  computed: {
+    filteredBooks(){
+      return this.books.filter((book) => book.isFav)
+    }
   }
 })
 
 app.mount('#app')
+
+// COMPUTED PROPERTY
+// Is a way to define a data property inside our components that depends on other
+// data that we have inside that components
