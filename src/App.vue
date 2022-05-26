@@ -4,7 +4,9 @@
     <Modal :ar=ar :header='header' :text=text :theme=theme @close='toggleModal' />
   </div>
   <br>
-  <button @click='toggleModal'>Open Modal</button>
+  <button @click.alt='toggleModal'>Open Modal(Alt)</button>
+<!-- @click.alt @click.shift @click.right these events just work with these button pressed-->
+
 </template>
 
 <script>
