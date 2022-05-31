@@ -1,16 +1,17 @@
 <template>
   <div class="backdrop" @click.self="closeModal">
     <div class="modal" :class="{  dark: theme === 'dark' }"> <!-- :class="{  sale: theme === 'sale' }" -->
-      <h1>{{header}}</h1>
-      <p>{{text}}</p>
-      <h1 v-if=ar[2]>{{ar[0]}} joga com a {{ar[1]}}</h1>
+      <slot>Default content</slot>
+      <div class="actions">
+        <slot name="links"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['ar', 'header', 'text', 'theme'],
+  props: ['theme'],
   methods:{
     closeModal(){
       this.$emit('close')
@@ -19,9 +20,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
   .modal{
-    width: 200px;
+    width: 400px;
     padding: 20px;
     margin: 100px auto;
     background: #fff;
@@ -39,18 +40,32 @@ export default {
     border: none;
     padding: 0;
   }
-  .modal.sale {
-    background: crimson;
-    color: white;
+  .modal p {
+    font-style: normal;
   }
-  .modal.sale h1 {
-    color: white;
+  .modal .actions{
+    text-align: center;
+    margin: 30px 0 10px 0;
+  }
+  .modal .actions a {
+    color: rgb(23, 35, 63);
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 10px;
   }
   .modal.dark{
     background: rgb(55, 51, 51);
     color: rgb(25, 218, 0);
   }
-  .modal.modal.dark h1{
+  .modal.dark h1{
     color: rgb(25, 218, 0);
+  }
+  .modal.dark .actions{
+    color: white;
+  }
+  .modal.dark .actions a {
+    color: white;
   }
 </style>

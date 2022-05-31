@@ -1,10 +1,30 @@
 <template>
   <h1>{{ title }}</h1>
+  <p>Welcome...</p>
   <div v-if="showModal">
-    <Modal :ar=ar :header='header' :text=text :theme=theme @close='toggleModal' />
+    <Modal :theme=theme @close='toggleModal'>
+      <template v-slot:links>
+        <a href="#">sign up now </a>
+        <a href="#">more info</a>
+      </template>
+      <h1>Vue Course</h1>
+      <p>Learning Vue3</p> 
+    </Modal>
+  </div>
+  <div v-if="showModalTwo">
+    <Modal @close='toggleModalTwo'>
+      <template v-slot:links>
+        <a href="#">sign up</a>
+        <a href="#">sign in</a>
+      </template>
+      <h1>Challenge Modal 2</h1>
+      <p>Learning Vue3</p> 
+    </Modal>
   </div>
   <br>
-  <button @click.alt='toggleModal'>Open Modal(Alt)</button>
+  <button @click.alt='toggleModal'>Open Modal (Alt)</button>
+  <br>
+  <button @click.shift='toggleModalTwo'>Open Modal Two (Shift)</button>
 <!-- @click.alt @click.shift @click.right these events just work with these button pressed-->
 
 </template>
@@ -21,7 +41,8 @@ export default {
       header: 'Sign up for the giveaway',
       text: 'Grab your ninja swag for half price',
       theme: 'dark', //'sale',
-      showModal: false
+      showModal: false,
+      showModalTwo: false
     }
   },
   methods:{
@@ -32,6 +53,9 @@ export default {
     },
     toggleModal(){
       this.showModal = ! this.showModal
+    },
+    toggleModalTwo(){
+      this.showModalTwo = ! this.showModalTwo
     }
   }
 }
